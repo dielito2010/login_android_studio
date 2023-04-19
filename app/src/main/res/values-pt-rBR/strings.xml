@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">login</string>
+    <string name="login">Entrar</string>
+    <string name="input_your_data">Insira seus dados:</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="remind">Lembrar</string>
+    <string name="sign_up">Cadastrar</string>
+    <string name="sign_in">Login</string>
+    <string name="register">Cadastrar</string>
+    <string name="go_back_to_login">Voltar para login</string>
+    <string name="welcome">Bem vindo!</string>
+    <string name="user">Usuário</string>
+    <string name="sign_out">Sair</string>
+    <string name="invalid_data">Email ou Senha inválidos</string>
+    <string name="authentication_failed">Falha na autenticação</string>
+</resources>

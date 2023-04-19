@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                 passwd = String.valueOf(txtPass.getText());
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(passwd)) {
-                    Toast.makeText(RegisterActivity.this, "ATENÇÃO: falta dados para prosseguir", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, R.string.invalid_data, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 } else {
                     mAuth.createUserWithEmailAndPassword(email, passwd)
@@ -73,12 +73,15 @@ public class RegisterActivity extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(RegisterActivity.this, "Registrado", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, R.string.welcome, Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     } else {
                                         progressBar.setVisibility(View.GONE);
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                        Toast.makeText(RegisterActivity.this, R.string.authentication_failed,
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }

@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">login</string>
-    <string name="login">login</string>
-    <string name="input_your_data">Input your data:</string>
+    <string name="login">Login</string>
+    <string name="input_your_data">input your data:</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="remind">Remind</string>
@@ -12,6 +12,4 @@
     <string name="welcome">Welcome</string>
     <string name="user">User</string>
     <string name="sign_out">Sign out</string>
-    <string name="invalid_data">Invalid data</string>
-    <string name="authentication_failed">Authentication failed</string>
 </resources>

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 passwd = String.valueOf(txtPass.getText());
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(passwd)) {
-                    Toast.makeText(MainActivity.this, "ATENÇÃO: falta dados para prosseguir", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.invalid_data, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 } else {
                     mAuth.signInWithEmailAndPassword(email, passwd)
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                     } else {
                                         progressBar.setVisibility(View.GONE);
                                         Log.w("signInWithEmail:failure", task.getException());
-                                        Toast.makeText(MainActivity.this, "Authentication failed.",
+                                        Toast.makeText(MainActivity.this, R.string.authentication_failed,
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
