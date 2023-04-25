@@ -3,6 +3,9 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     Button bntSair;
     FirebaseUser user;
     FirebaseAuth auth;
+    SQLiteDatabase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,8 @@ public class HomeActivity extends AppCompatActivity {
         txtHome = findViewById(R.id.getUser);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        txtHome.setText(String.valueOf(user.getEmail()));
+
+        getUserDb();
 
         bntSair = findViewById(R.id.bntLogout);
 
@@ -38,5 +43,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getUserDb() {
+        try {
+            dataBase = openOrCreateDatabase("DB_LOGIN_APP", MODE_PRIVATE, null);
+                Cursor myCursor = dataBase.rawQuery("SELECT Id, First_Name, Last_Name FROM User", null);
+
+            dataBase.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        txtHome.setText(String.valueOf(user.getEmail()));
     }
 }

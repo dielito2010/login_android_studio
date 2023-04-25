@@ -14,4 +14,10 @@
     <string name="sign_out">Sign out</string>
     <string name="invalid_data">Invalid data</string>
     <string name="authentication_failed">Authentication failed</string>
+    <string name="enter_your_first_name">Enter your first name</string>
+    <string name="enter_your_last_name">Enter your last name</string>
+    <string name="save">Save</string>
+    <string name="show_data">Show data</string>
+    <string name="name">First name:</string>
+    <string name="last_name">Last name:</string>
 </resources>

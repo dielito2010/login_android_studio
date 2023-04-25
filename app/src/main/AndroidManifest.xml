@@ -30,6 +30,12 @@
         android:testOnly="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name="com.example.login.DisplayActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.login.FormActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.login.HomeActivity"
             android:exported="false" />
         <activity
