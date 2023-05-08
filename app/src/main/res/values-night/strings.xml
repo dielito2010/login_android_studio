@@ -16,6 +16,7 @@
     <string name="enter_your_last_name">Enter your last name</string>
     <string name="save">Save</string>
     <string name="show_data">Show data</string>
-    <string name="name">Name:</string>
-    <string name="last_name">Last name:</string>
+    <string name="name">Name</string>
+    <string name="last_name">Last name</string>
+    <string name="form">Form</string>
 </resources>

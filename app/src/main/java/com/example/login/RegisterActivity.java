@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -71,7 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, R.string.invalid_data, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 } else {
-                    cadastrarNoBanco();
                     mAuth.createUserWithEmailAndPassword(email, passwd)
                             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -94,7 +92,11 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
                                 }
                             });
+
+                    MyDataBaseHelper myDB = new MyDataBaseHelper(RegisterActivity.this);
+                    myDB.addPerson(firstName.trim(), lastName.trim(), email.trim());
                 }
+
             }
         });
         gotoLogin.setOnClickListener(new View.OnClickListener() {
@@ -105,30 +107,5 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-    public void cadastrarNoBanco() {
-        txtFirstName = findViewById(R.id.inputFirstName);
-        txtLastName = findViewById(R.id.inputLastName);
-        txtEmail = findViewById(R.id.inputEmail);
-        String email, firstName, lastName;
-        email = txtEmail.getText().toString();
-        firstName = txtFirstName.getText().toString();
-        lastName = txtLastName.getText().toString();
-
-        try {
-            dataBase = openOrCreateDatabase("DB_LOGIN_APP", MODE_PRIVATE, null);
-            dataBase.execSQL("CREATE TABLE IF NOT EXISTS User(" +
-                    " Id INTEGER PRIMARY KEY AUTOINCREMENT" +
-                    ", Email VARCHAR, Firts_Name VARCHAR, Last_Name VARCHAR)");
-            String sql = "INSERT INTO User (Email, First_Name, Last_Name) VALUES (?, ?, ?)";
-            SQLiteStatement stmt = dataBase.compileStatement(sql);
-            stmt.bindString(1, email);
-            stmt.bindString(2, firstName);
-            stmt.bindString(3, lastName);
-            stmt.executeInsert();
-            dataBase.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }

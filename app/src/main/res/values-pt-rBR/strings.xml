@@ -13,12 +13,13 @@
     <string name="welcome">Bem vindo!</string>
     <string name="user">Usuário</string>
     <string name="sign_out">Sair</string>
-    <string name="invalid_data">Email ou Senha inválidos</string>
+    <string name="invalid_data">Dados inválidos</string>
     <string name="authentication_failed">Falha na autenticação</string>
     <string name="enter_your_first_name">Insira seu nome:</string>
     <string name="enter_your_last_name">Insira seu sobrenome:</string>
     <string name="save">Salvar</string>
     <string name="show_data">Show data</string>
-    <string name="name">Nome:</string>
-    <string name="last_name">Sobrenome:</string>
+    <string name="name">Nome</string>
+    <string name="last_name">Sobrenome</string>
+    <string name="form">Formulário</string>
 </resources>

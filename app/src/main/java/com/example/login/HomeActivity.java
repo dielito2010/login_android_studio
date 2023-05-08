@@ -3,35 +3,33 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
-    TextView txtHome;
+    TextView txtForm, txtUser;
     Button bntSair;
     FirebaseUser user;
     FirebaseAuth auth;
-    SQLiteDatabase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        txtHome = findViewById(R.id.getUser);
+        txtUser = findViewById(R.id.getUser);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-
-        getUserDb();
-
+        txtForm = findViewById(R.id.txtForm);
         bntSair = findViewById(R.id.bntLogout);
+
+        txtUser.setText((String.valueOf(user.getEmail())));
 
         bntSair.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,17 +41,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void getUserDb() {
-        try {
-            dataBase = openOrCreateDatabase("DB_LOGIN_APP", MODE_PRIVATE, null);
-                Cursor myCursor = dataBase.rawQuery("SELECT Id, First_Name, Last_Name FROM User", null);
-
-            dataBase.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        txtHome.setText(String.valueOf(user.getEmail()));
+        txtForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

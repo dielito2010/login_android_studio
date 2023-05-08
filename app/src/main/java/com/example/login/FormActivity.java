@@ -6,17 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class FormActivity extends AppCompatActivity {
 
-    public static final String EXTRA_FNAME = "package com.example.login.FNAME";
-    public static final String EXTRA_LNAME = "package com.example.login.LNAME";
+    public static final String EXTRA_FNAME = "package com.motoacademy.lablogin.FNAME";
+    public static final String EXTRA_LNAME = "package com.motoacademy.lablogin.LNAME";
 
-    private EditText mFname;
+    private EditText mFname, mEmail;
     private EditText mLname;
     private Button mButtonSave;
     private Button mButtonDisplay;
@@ -28,6 +27,7 @@ public class FormActivity extends AppCompatActivity {
 
         mFname  = findViewById(R.id.main_fname);
         mLname  = findViewById(R.id.main_lname);
+        mEmail = findViewById(R.id.main_email);
         mButtonSave = findViewById(R.id.main_button_save);
         mButtonDisplay = findViewById(R.id.main_button_display);
 
@@ -74,9 +74,10 @@ public class FormActivity extends AppCompatActivity {
 
                 String fName = mFname.getText().toString();
                 String lName = mLname.getText().toString();
+                String email = mEmail.getText().toString();
 
                 MyDataBaseHelper myDB = new MyDataBaseHelper(FormActivity.this);
-                myDB.addPerson(fName.trim(), lName.trim());
+                myDB.addPerson(fName.trim(), lName.trim(), email.trim());
 
 
 

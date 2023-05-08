@@ -11,16 +11,14 @@ import androidx.annotation.Nullable;
 
 public class MyDataBaseHelper extends SQLiteOpenHelper {
 
-    private Context context;
+    private final Context context;
     private static final String DATABASE_NAME = "person.db";
     private static final int DATABASE_VERSION = 1;
-
     private static final String TABLE_NAME = "tbl_names";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_FNAME = "fname";
     private static final String COLUMN_LNAME = "lname";
-
-    private static final String COLUMN_IDADE = "idade";
+    private  static final String COLUMN_EMAIL = "email";
 
     public MyDataBaseHelper(@Nullable Context activity) {
         super(activity, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +30,7 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
 
         String query = "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FNAME + " TEXT, " + COLUMN_LNAME + " TEXT);";
+                COLUMN_FNAME + " TEXT, " + COLUMN_LNAME + " TEXT, " + COLUMN_EMAIL + " TEXT);";
 
         db.execSQL(query);
 
@@ -45,12 +43,13 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addPerson(String fName, String lName) {
+    void addPerson(String fName, String lName, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_FNAME, fName);
         cv.put(COLUMN_LNAME, lName);
+        cv.put(COLUMN_EMAIL, email);
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -67,8 +66,6 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
         if (db != null) {
             cursor = db.rawQuery(query, null);
         }
-
         return cursor;
-
     }
 }
